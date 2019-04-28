@@ -9,7 +9,8 @@ import java.net.Socket
 
 class WorkerRunnable(
     private val clientSocket: Socket,
-    private val serverText: String) : Runnable {
+    private val serverText: String
+) : Runnable {
 
     override fun run() {
         try {
@@ -39,7 +40,8 @@ class WorkerRunnable(
                         }
                     }
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    if (SyncAndRun.unquiet)
+                        e.printStackTrace()
                     output.close()
                     input.close()
                     clientSocket.close()
@@ -48,7 +50,8 @@ class WorkerRunnable(
             output.close()
             input.close()
         } catch (e: IOException) {
-            e.printStackTrace()
+            if (SyncAndRun.unquiet)
+                e.printStackTrace()
         }
     }
 }

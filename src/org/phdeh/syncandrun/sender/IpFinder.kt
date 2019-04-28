@@ -83,9 +83,12 @@ fun listAddresses(
                             }
                         }
                     } catch (e: SocketTimeoutException) {
+                        if (SyncAndRun.unquiet)
+                            e.printStackTrace()
                         CrashCode.EXECUTION_COMPLETE.crash()
                     } catch (e: Exception) {
-                        e.printStackTrace()
+                        if (SyncAndRun.unquiet)
+                                e.printStackTrace()
                         return@thread
                     }
                 }

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    for (int i = 0; i < 100; i++)
+    for (long long int i = 0; i < 1000000000000L; i++)
         printf("Hello, world!%d\n", i);
     system("dir c:\\");
     return 0;

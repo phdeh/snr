@@ -40,13 +40,18 @@ enum class MessageHandler(val side: Side, val args: Int = 0, val handle: (Messag
                     val sc = BufferedReader(outputStream.reader())
                     val limiter = SimpleTimeLimiter()
                     while (!stop) {
-                        limiter.callWithTimeout({
-                            val next = sc.readLine()
-                            if (next != null) {
-                                println(next)
-                                it.answer(message, next)
-                            }
-                        }, SyncAndRun.timeout.toLong(), TimeUnit.MILLISECONDS, false)
+                        try {
+                            limiter.callWithTimeout({
+                                val next = sc.readLine()
+                                if (next != null) {
+                                    println(next)
+                                    it.answer(message, next)
+                                }
+                            }, SyncAndRun.timeout.toLong(), TimeUnit.MILLISECONDS, false)
+                        } catch (e: Exception) {
+                            if (SyncAndRun.unquiet)
+                                e.printStackTrace()
+                        }
                     }
                 }
             }
