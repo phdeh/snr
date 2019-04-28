@@ -42,8 +42,10 @@ enum class MessageHandler(val side: Side, val args: Int = 0, val handle: (Messag
                     while (!stop) {
                         limiter.callWithTimeout({
                             val next = sc.readLine()
-                            if (next != null)
+                            if (next != null) {
+                                println(next)
                                 it.answer(message, next)
+                            }
                         }, SyncAndRun.timeout.toLong(), TimeUnit.MILLISECONDS, false)
                     }
                 }
