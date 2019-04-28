@@ -1,5 +1,8 @@
 import conventions.ConsoleKey
-import java.util.*
+import conventions.CrashCode
+import receiver.Receiver
+import sender.Sender
+import kotlin.concurrent.thread
 
 /*
 
@@ -24,5 +27,34 @@ import java.util.*
 
 fun main(args: Array<String>) {
     val keys = ConsoleKey.from(args)
-    println(keys)
+
+    fun handleIfNotNull(key: ConsoleKey, action: (List<String>) -> Unit) {
+        val list = keys[key]
+        if (list != null)
+            action(list)
+    }
+
+    handleIfNotNull(ConsoleKey.HELP) {
+        println("Commands:")
+        println()
+        ConsoleKey.values().forEach {
+            println("   ${it.shortKey} ${it.longKey} ${it.help}")
+            println()
+        }
+    }
+
+    var priority = 0
+
+    handleIfNotNull(ConsoleKey.PRIORITY) {
+        priority = Integer.valueOf(priority)
+    }
+
+    handleIfNotNull(ConsoleKey.RECEIVE) {
+        thread { Receiver(it[0], priority) }
+    }
+
+    handleIfNotNull(ConsoleKey.SEND) {
+        thread { Sender(it[0], priority) }
+    }
+
 }

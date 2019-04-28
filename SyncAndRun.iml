@@ -10,5 +10,6 @@
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="org.apache.directory.studio:org.apache.commons.io:2.4" level="project" />
     <orderEntry type="library" name="ant:ant-junit:1.6.5" level="project" />
+    <orderEntry type="library" name="org.reflections:reflections-maven:0.9.8" level="project" />
   </component>
 </module>

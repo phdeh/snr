@@ -1,11 +1,11 @@
 package conventions
 
-enum class ConsoleKey(val args: Int) {
+enum class ConsoleKey(val args: Int, val help: String = "") {
 
-    HELP(0),
-    RECEIVE(1),
-    SEND(1),
-    PRIORITY(1)
+    HELP(0, " --  prints this message"),
+    RECEIVE(1, "<PATH>  --  starts receiving server in path"),
+    SEND(1, "<PATH>  --  sends path to server"),
+    PRIORITY(1, "<PRIORITY>  --  sets server or client priority")
 
     ;
 

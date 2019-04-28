@@ -5,7 +5,9 @@ import java.io.IOException
 import java.net.ServerSocket
 import java.net.Socket
 
-class MultiThreadedServer(private val serverPort: Int = SyncAndRun.DEFAULT_PORT) : Runnable {
+class MultiThreadedServer(
+    private val serverPort: Int = SyncAndRun.DEFAULT_PORT
+) : Runnable {
 
     private var serverSocket: ServerSocket? = null
     private var isStopped = false

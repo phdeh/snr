@@ -3,7 +3,8 @@ package conventions
 enum class CrashCode {
 
     BAD_CONSOLE_KEYS,
-    ARGUMENT_NUMBER_MISMATCH
+    ARGUMENT_NUMBER_MISMATCH,
+    MESSAGE_ENUMERATION_FILLED_INCORRECTLY
 
     ;
 
