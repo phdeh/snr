@@ -59,7 +59,7 @@ enum class MessageHandler(val side: Side, val args: Int = 0, val handle: (Messag
             scan(System.out::println, process.inputStream, CONSOLE_OUT)
             scan(System.err::println, process.errorStream, CONSOLE_ERR)
 
-            while (it.socket.isConnected && process.isAlive) {
+            while (!it.socket.isClosed && process.isAlive) {
                 Thread.sleep(SyncAndRun.timeout.toLong())
             }
             Thread.sleep(SyncAndRun.timeout.toLong())
